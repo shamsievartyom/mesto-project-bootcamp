@@ -5,7 +5,8 @@
     height: 19px;
     border: none;
     margin-left: auto;
-    background-image: url(/../../images/icon_like-btn.svg);
+    background-image: url(./../../../images/icon_like-btn.svg);
+    /* ../../images/icon_like-btn.svg */
     background-size: 22px;
     background-repeat: no-repeat;
     background-position: center;
@@ -18,5 +19,5 @@
 
 .place__like-btn:active {
     opacity: 0.5;
-    background-image: url(/../../images/icon_like-btn_active.svg);
+    background-image: url(./../../../images/icon_like-btn_active.svg);
 }
