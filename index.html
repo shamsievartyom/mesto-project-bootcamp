@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Место</title>
+  <link rel="stylesheet" type="text/css" href="./pages/index.css">
+</head>
+
+<body class="page">
+  <div class="cover cover_closed">
+    <form class="profile-edit-form">
+      <svg class="profile-edit-form__close-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 28.8L19.2 16L32 3.2L28.8 0L16 12.8L3.2 0L0 3.2L12.8 16L0 28.8L3.2 32L16 19.2L28.8 32L32 28.8Z"
+          fill="white" />
+      </svg>
+      <h2 class="profile-edit-form__title">Редактировать профиль</h2>
+      <fieldset class="profile-edit-form__fieldset">
+        <input class="profile-edit-form__input" type="text" value="Жак-Ив Кусто" name="Имя" placeholder="Имя">
+        <input class="profile-edit-form__input" type="text" value="Исследователь океана" name="О себе" placeholder="О себе">
+      </fieldset>
+      <input class="profile-edit-form__submit-btn" type="submit" value="Сохранить">
+    </form>
+  </div>
+  <header class="header">
+    <img class="header__logo" src="./images/logo.svg" alt="Лого большая надпись Mesto и маленькая Russia">
+  </header>
+  <main class="content">
+    <section class="profile">
+      <img class="profile__avatar" src="./images/kusto.jpg" alt="Жак-Ив Кусто">
+      <article class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__edit-btn"></button>
+        <p class="profile__description">Исследователь океана</p>
+      </article>
+      <button class="profile__add-btn"></button>
+    </section>
+    <section>
+      <ul class="places">
+        <li class="place">
+          <article>
+            <img class="place__image" src="./images/places/karachaevsk.jpg" alt="Старое кирпичное здание">
+            <div class="place__container">
+              <h2 class="place__name">Карачаевск</h2>
+              <button class="place__like-btn"></button>
+            </div>
+          </article>
+        </li>
+        <li class="place">
+          <article>
+            <img class="place__image" src="./images/places/elbrus.jpg" alt="Гора в дали на горизонте">
+            <div class="place__container">
+              <h2 class="place__name">Гора Эльбрус</h2>
+              <button class="place__like-btn"></button>
+            </div>
+          </article>
+        </li>
+        <li class="place">
+          <article>
+            <img class="place__image" src="./images/places/dombay.jpg" alt="Горы и лес">
+            <div class="place__container">
+              <h2 class="place__name">Домбай</h2>
+              <button class="place__like-btn"></button>
+            </div>
+          </article>
+        </li>
+        <li class="place">
+          <article>
+            <img class="place__image" src="./images/places/elbrus.jpg" alt="Гора в дали на горизонте">
+            <div class="place__container">
+              <h2 class="place__name">Гора Эльбрус</h2>
+              <button class="place__like-btn"></button>
+            </div>
+          </article>
+        </li>
+        <li class="place">
+          <article>
+            <img class="place__image" src="./images/places/dombay.jpg" alt="Горы и лес">
+            <div class="place__container">
+              <h2 class="place__name">Домбай</h2>
+              <button class="place__like-btn"></button>
+            </div>
+          </article>
+        </li>
+        <li class="place">
+          <article>
+            <img class="place__image" src="./images/places/karachaevsk.jpg" alt="Старое кирпичное здание">
+            <div class="place__container">
+              <h2 class="place__name">Карачаевск</h2>
+              <button class="place__like-btn"></button>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2023 Mesto Russia</p>
+  </footer>
+</body>
+
+</html>

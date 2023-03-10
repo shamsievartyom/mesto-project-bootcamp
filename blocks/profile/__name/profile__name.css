@@ -1,0 +1,23 @@
+.profile__name {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 48px;
+    display: inline;
+}
+
+@media (max-width: 1280px) {
+    .profile__name {
+        font-size: calc(42px - ((1280px - 100vw) * 15/960));
+        line-height: calc(48px - ((1280px - 100vw) * 15/960));
+        /*  42-27=15 Изменение количества пикселей font-size
+        48-33=15 Изменение количества пикселей line-height
+        1280-320=960 Первое разрешение минус второе*/
+    }
+}
+
+@media (max-width: 620px) {
+    .profile__name {
+        margin-left: 28px;
+    }
+}

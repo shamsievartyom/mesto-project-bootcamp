@@ -1,0 +1,5 @@
+.place__container {
+    display: flex;
+    margin: 25px 21px;
+    align-items: center;
+}
