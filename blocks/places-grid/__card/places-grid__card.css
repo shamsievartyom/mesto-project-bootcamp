@@ -1,0 +1,6 @@
+.places-grid__card{
+    list-style-type: none;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: white;
+}

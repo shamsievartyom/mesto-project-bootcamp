@@ -3,15 +3,20 @@
     font-size: 42px;
     font-weight: 500;
     line-height: 48px;
-    display: inline;
+    max-width: 294px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media (max-width: 1280px) {
     .profile__name {
         font-size: calc(42px - ((1280px - 100vw) * 15/960));
         line-height: calc(48px - ((1280px - 100vw) * 15/960));
+        max-width: calc(294px - ((1280px - 100vw) * 105/960));
         /*  42-27=15 Изменение количества пикселей font-size
         48-33=15 Изменение количества пикселей line-height
+        294-189=105 Изменение количества пикселей max-width
         1280-320=960 Первое разрешение минус второе*/
     }
 }

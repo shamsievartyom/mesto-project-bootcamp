@@ -1,8 +1,14 @@
 .profile-edit-form__close-icon {
     position: absolute;
+    border: none;
+    background-color: unset;
+    padding: 0;
     right: -40px;
     top: -40px;
     cursor: pointer;
+    background-image: url(./../../../images/icon_close.svg);
+    width: 32px;
+    height: 32px;
 }
 
 @media (max-width: 620px) {
@@ -11,6 +17,7 @@
         top: -36px;
         width: 20px;
         height: 20px;
+        background-size: 20px;
     }
 }
 
