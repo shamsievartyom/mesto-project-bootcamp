@@ -26,80 +26,59 @@
     </section>
     <section class="places">
       <ul class="places-grid">
-        <li class="places-grid__card">
-          <article class="place">
-            <img class="place__image" src="./images/places/karachaevsk.jpg" alt="Старое кирпичное здание">
-            <div class="place__container">
-              <h2 class="place__name">Карачаевск</h2>
-              <button class="place__like-btn" type="button"></button>
-            </div>
-          </article>
-        </li>
-        <li class="places-grid__card">
-          <article class="place">
-            <img class="place__image" src="./images/places/elbrus.jpg" alt="Гора в дали на горизонте">
-            <div class="place__container">
-              <h2 class="place__name">Гора Эльбрус</h2>
-              <button class="place__like-btn"></button>
-            </div>
-          </article>
-        </li>
-        <li class="places-grid__card">
-          <article class="place">
-            <img class="place__image" src="./images/places/dombay.jpg" alt="Горы и лес">
-            <div class="place__container">
-              <h2 class="place__name">Домбай</h2>
-              <button class="place__like-btn"></button>
-            </div>
-          </article>
-        </li>
-        <li class="places-grid__card">
-          <article class="place">
-            <img class="place__image" src="./images/places/elbrus.jpg" alt="Гора в дали на горизонте">
-            <div class="place__container">
-              <h2 class="place__name">Гора Эльбрус</h2>
-              <button class="place__like-btn"></button>
-            </div>
-          </article>
-        </li>
-        <li class="places-grid__card">
-          <article class="place">
-            <img class="place__image" src="./images/places/dombay.jpg" alt="Горы и лес">
-            <div class="place__container">
-              <h2 class="place__name">Домбай</h2>
-              <button class="place__like-btn"></button>
-            </div>
-          </article>
-        </li>
-        <li class="places-grid__card">
-          <article class="place">
-            <img class="place__image" src="./images/places/karachaevsk.jpg" alt="Старое кирпичное здание">
-            <div class="place__container">
-              <h2 class="place__name">Карачаевск</h2>
-              <button class="place__like-btn"></button>
-            </div>
-          </article>
-        </li>
       </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2023 Mesto Russia</p>
   </footer>
-  <div class="popup popup_opened">
+  <div class="popup popup-edit">
     <section class="popup-edit-window">
       <button class="profile-edit-form__close-icon" type="button"></button>
       <h2 class="profile-edit-form__title">Редактировать профиль</h2>
       <form class="profile-edit-form" name="Форма редактирования">
         <fieldset class="profile-edit-form__fieldset">
-          <input class="profile-edit-form__input" type="text" value="Жак-Ив Кусто" name="Имя" placeholder="Имя">
-          <input class="profile-edit-form__input" type="text" value="Исследователь океана" name="О себе"
-            placeholder="О себе">
+          <input class="profile-edit-form__input name-input" type="text" name="Имя" placeholder="Имя">
+          <input class="profile-edit-form__input description-input" type="text" name="О себе" placeholder="О себе">
         </fieldset>
         <input class="profile-edit-form__submit-btn" type="submit" value="Сохранить">
       </form>
     </section>
   </div>
+  <div class="popup popup-add-card">
+    <section class="popup-edit-window">
+      <button class="profile-edit-form__close-icon" type="button"></button>
+      <h2 class="profile-edit-form__title">Новое место</h2>
+      <form class="profile-edit-form" name="Форма редактирования">
+        <fieldset class="profile-edit-form__fieldset">
+          <input class="profile-edit-form__input name-input" type="text" name="Название" placeholder="Название">
+          <input class="profile-edit-form__input description-input" type="text" name="Ссылка"
+            placeholder="Ссылка на картинку">
+        </fieldset>
+        <input class="profile-edit-form__submit-btn" type="submit" value="Создать">
+      </form>
+    </section>
+  </div>
+  <div class="popup popup-image">
+    <section class="popup-image-section">
+      <button class="profile-edit-form__close-icon" type="button"></button>
+      <img class="popup-image-section__picture">
+      <h2 class="popup-image-section__title"></h2>
+    </section>
+  </div>
+  <template class="card-template">
+    <li class="places-grid__card">
+      <article class="place">
+        <button class="place__image-btn" type="button"><img class="place__image"></button>
+        <div class="place__container">
+          <h2 class="place__name"></h2>
+          <button class="place__like-btn" type="button"></button>
+        </div>
+        <button class="place__delete-btn"></button>
+      </article>
+    </li>
+  </template>
+  <script src="./script.js" defer></script>
 </body>
 
 </html>

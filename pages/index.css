@@ -16,10 +16,13 @@
 @import url(../blocks/places-grid/places-grid.css);
 @import url(../blocks/places-grid/__card/places-grid__card.css);
 @import url(../blocks/place/place.css);
+@import url(../blocks/place/__image-btn/place__image-btn.css);
 @import url(../blocks/place/__image/place__image.css);
 @import url(../blocks/place/__container/place__container.css);
 @import url(../blocks/place/__name/place__name.css);
 @import url(../blocks/place/__like-btn/place__like-btn.css);
+@import url(../blocks/place/__like-btn/_active/place__like-btn_active.css);
+@import url(../blocks/place/__delete-btn/place__delete-btn.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
@@ -31,3 +34,6 @@
 @import url(../blocks/profile-edit-form/__fieldset/profile-edit-form__fieldset.css);
 @import url(../blocks/profile-edit-form/__input/profile-edit-form__input.css);
 @import url(../blocks/profile-edit-form/__submit-btn/profile-edit-form__submit-btn.css);
+@import url(../blocks/popup-image-section/popup-image-section.css);
+@import url(../blocks/popup-image-section/__picture/popup-image-section__picture.css);
+@import url(../blocks/popup-image-section/__title/popup-image-section__title.css);
