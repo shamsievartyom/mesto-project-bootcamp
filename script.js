@@ -24,12 +24,12 @@ const initialCards = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-        alt: 'Зеленые горы',
+        alt: 'Зелёные горы',
     },
     {
         name: 'Челябинская область',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-        alt: 'Озрео среди снега',
+        alt: 'Озеро среди снега',
     },
     {
         name: 'Иваново',
