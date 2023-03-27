@@ -97,7 +97,7 @@ function createCard(obj) {
         popupImageTitle.textContent = obj.name;
         openPopup(popupImage);
     })
-    placesGrid.prepend(card);
+    return card;
 }
 
 function handleSubmitAddPopup(event) {
@@ -107,12 +107,12 @@ function handleSubmitAddPopup(event) {
         name: popupAddNameInput.value,
         link: popupAddDescriptionInput.value,
     }
-    createCard(placeCard);
+    placesGrid.prepend(createCard(placeCard));
     popupAddForm.reset();
     closePopup(popupAdd);
 }
 
-initialCards.reverse().forEach(obj => createCard(obj));//default cards
+initialCards.reverse().forEach(obj => placesGrid.prepend(createCard(obj)));//default cards
 
 buttonForCloseImage.addEventListener('click', () => closePopup(popupImage));
 //add popup
