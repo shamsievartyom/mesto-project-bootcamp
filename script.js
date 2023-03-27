@@ -1,7 +1,7 @@
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const popupEdit = document.querySelector('.popup_type_profile-edit');
-const closeEditButton = popupEdit.querySelector('.profile-edit-form__close-icon');
+const buttonForCloseEdit = popupEdit.querySelector('.profile-edit-form__close-icon');
 const popupEditNameInput = popupEdit.querySelector('.name-input');
 const popupEditDescriptionInput = popupEdit.querySelector('.description-input');
 const popupEditSubmit = popupEdit.querySelector('.profile-edit-form__submit-btn');
@@ -13,12 +13,12 @@ const cardTemplate = document.querySelector('.card-template');
 const popupAddForm = popupAdd.querySelector('.profile-edit-form');
 const popupAddNameInput = popupAdd.querySelector('.name-input');
 const popupAddDescriptionInput = popupAdd.querySelector('.description-input');
-const closeAddButton = popupAdd.querySelector('.profile-edit-form__close-icon');
+const buttonForCloseAdd = popupAdd.querySelector('.profile-edit-form__close-icon');
 
 const popupImage = document.querySelector('.popup-image');
 const popupImagePicture = popupImage.querySelector('.popup-image__picture');
 const popupImageTitle = popupImage.querySelector('.popup-image__title');
-const closeImageButton = popupImage.querySelector('.profile-edit-form__close-icon');
+const buttonForCloseImage = popupImage.querySelector('.profile-edit-form__close-icon');
 
 const initialCards = [
     {
@@ -110,12 +110,12 @@ function handleSubmitAddPopup(event) {
 
 initialCards.reverse().forEach(obj => createCard(obj));//default cards
 
-closeImageButton.addEventListener('click', () => openClosePopup(popupImage));
+buttonForCloseImage.addEventListener('click', () => openClosePopup(popupImage));
 //add popup
 popupAddForm.addEventListener('submit', handleSubmitAddPopup);
-closeAddButton.addEventListener('click', () => openClosePopup(popupAdd));
+buttonForCloseAdd.addEventListener('click', () => openClosePopup(popupAdd));
 document.querySelector('.profile__add-btn').addEventListener('click', () => openClosePopup(popupAdd));
 //edit popup
 popupEditForm.addEventListener('submit', handleSubmitEditPopup);
-closeEditButton.addEventListener('click', () => openClosePopup(popupEdit));
+buttonForCloseEdit.addEventListener('click', () => openClosePopup(popupEdit));
 document.querySelector('.profile__edit-btn').addEventListener('click', handleEditButton);
