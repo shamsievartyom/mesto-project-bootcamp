@@ -58,8 +58,12 @@ function fillPopupInputs() {
     popupEditDescriptionInput.value = profileDescription.textContent;
 }
 
-function openClosePopup(popup) {
-    popup.classList.toggle('popup_opened');
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
 }
 
 function handleSubmitEditPopup(event) {
@@ -67,11 +71,11 @@ function handleSubmitEditPopup(event) {
 
     profileName.textContent = popupEditNameInput.value
     profileDescription.textContent = popupEditDescriptionInput.value;
-    openClosePopup(popupEdit)
+    closePopup(popupEdit)
 }
 
 function handleEditButton() {
-    openClosePopup(popupEdit);
+    openPopup(popupEdit);
     fillPopupInputs();
 }
 
@@ -91,7 +95,7 @@ function createCard(obj) {
         popupImagePicture.src = cardImage.src;
         popupImagePicture.alt = cardImage.alt;
         popupImageTitle.textContent = obj.name;
-        openClosePopup(popupImage);
+        openPopup(popupImage);
     })
     placesGrid.prepend(card);
 }
@@ -105,17 +109,17 @@ function handleSubmitAddPopup(event) {
     }
     createCard(placeCard);
     popupAddForm.reset();
-    openClosePopup(popupAdd);
+    closePopup(popupAdd);
 }
 
 initialCards.reverse().forEach(obj => createCard(obj));//default cards
 
-buttonForCloseImage.addEventListener('click', () => openClosePopup(popupImage));
+buttonForCloseImage.addEventListener('click', () => closePopup(popupImage));
 //add popup
 popupAddForm.addEventListener('submit', handleSubmitAddPopup);
-buttonForCloseAdd.addEventListener('click', () => openClosePopup(popupAdd));
-document.querySelector('.profile__add-btn').addEventListener('click', () => openClosePopup(popupAdd));
+buttonForCloseAdd.addEventListener('click', () => closePopup(popupAdd));
+document.querySelector('.profile__add-btn').addEventListener('click', () => openPopup(popupAdd));
 //edit popup
 popupEditForm.addEventListener('submit', handleSubmitEditPopup);
-buttonForCloseEdit.addEventListener('click', () => openClosePopup(popupEdit));
+buttonForCloseEdit.addEventListener('click', () => closePopup(popupEdit));
 document.querySelector('.profile__edit-btn').addEventListener('click', handleEditButton);
