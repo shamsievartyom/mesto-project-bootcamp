@@ -15,7 +15,7 @@ const popupAddNameInput = popupAdd.querySelector('.name-input');
 const popupAddDescriptionInput = popupAdd.querySelector('.description-input');
 const buttonForCloseAdd = popupAdd.querySelector('.profile-edit-form__close-icon');
 
-const popupImage = document.querySelector('.popup-image');
+const popupImage = document.querySelector('.popup_type_image');
 const popupImagePicture = popupImage.querySelector('.popup-image__picture');
 const popupImageTitle = popupImage.querySelector('.popup-image__title');
 const buttonForCloseImage = popupImage.querySelector('.profile-edit-form__close-icon');
