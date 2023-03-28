@@ -5,16 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" type="text/css" href="./pages/index.css">
 </head>
 
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="Лого большая надпись Mesto и маленькая Russia">
+    <img class="header__logo" src="<%=require('../images/logo.svg')%>" alt="Лого большая надпись Mesto и маленькая Russia">
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="./images/kusto.jpg" alt="Жак-Ив Кусто">
+      <img class="profile__avatar" src="<%=require('../images/kusto.jpg')%>" alt="Жак-Ив Кусто">
       <div class="profile__info">
         <div class="profile__info-row">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -38,8 +37,12 @@
       <h2 class="profile-edit-form__title">Редактировать профиль</h2>
       <form class="profile-edit-form" name="Форма редактирования">
         <fieldset class="profile-edit-form__fieldset">
-          <input class="profile-edit-form__input name-input" type="text" name="Имя" placeholder="Имя">
-          <input class="profile-edit-form__input description-input" type="text" name="О себе" placeholder="О себе">
+          <input class="profile-edit-form__input name-input" id="name" type="text" name="Имя" placeholder="Имя"
+            minlength="2" maxlength="40" required>
+          <span class="profile-edit-form__error" id="error-name"></span>
+          <input class="profile-edit-form__input description-input" id="description" type="text" name="О себе"
+            minlength="2" maxlength="200" required placeholder="О себе">
+          <span class="profile-edit-form__error" id="error-description"></span>
         </fieldset>
         <input class="profile-edit-form__submit-btn" type="submit" value="Сохранить">
       </form>
@@ -51,9 +54,12 @@
       <h2 class="profile-edit-form__title">Новое место</h2>
       <form class="profile-edit-form" name="Форма редактирования">
         <fieldset class="profile-edit-form__fieldset">
-          <input class="profile-edit-form__input name-input" type="text" name="Название" placeholder="Название">
-          <input class="profile-edit-form__input description-input" type="text" name="Ссылка на картинку"
-            placeholder="Ссылка на картинку">
+          <input class="profile-edit-form__input name-input" id="title" type="text" name="Название" required
+            minlength="2" maxlength="30" placeholder="Название">
+          <span class="profile-edit-form__error" id="error-title"></span>
+          <input class="profile-edit-form__input description-input" id="link" type="url" name="Ссылка на картинку"
+            required placeholder="Ссылка на картинку">
+          <span class="profile-edit-form__error" id="error-link"></span>
         </fieldset>
         <input class="profile-edit-form__submit-btn" type="submit" value="Создать">
       </form>
@@ -78,7 +84,6 @@
       </article>
     </li>
   </template>
-  <script src="./script.js" defer></script>
 </body>
 
 </html>

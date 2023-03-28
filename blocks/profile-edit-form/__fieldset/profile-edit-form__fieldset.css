@@ -3,12 +3,11 @@
     flex-direction: column;
     padding: 0px;
     border: none;
-    margin: 48px 0 48px;
-    gap: 30px;
+    margin: 48px 0 20px;
 }
 
 @media (max-width: 620px) {
     .profile-edit-form__fieldset {
-        margin: 75px 0 45px;
+        margin: 75px 0 17px;
     }
 }

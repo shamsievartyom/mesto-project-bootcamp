@@ -1,3 +1,5 @@
+import '../pages/index.css'; // добавьте импорт главного файла стилей 
+
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const popupEdit = document.querySelector('.popup_type_profile-edit');
@@ -75,8 +77,16 @@ function handleSubmitEditPopup(event) {
 }
 
 function handleEditButton() {
-    openPopup(popupEdit);
     fillPopupInputs();
+
+    //validation before open 
+    const inputList = popupEditForm.querySelectorAll('.profile-edit-form__input');
+    inputList.forEach((inputElement) => {
+        checkValid(popupEditForm, inputElement, { inputErrorClass: 'profile-edit-form__input_invalid' });
+    });
+    toggleButton(popupEditForm, popupEditSubmit);
+
+    openPopup(popupEdit);
 }
 
 function createCard(obj) {
@@ -115,11 +125,86 @@ function handleSubmitAddPopup(event) {
 initialCards.reverse().forEach(obj => placesGrid.prepend(createCard(obj)));//default cards
 
 buttonForCloseImage.addEventListener('click', () => closePopup(popupImage));
+popupImage.addEventListener('click', () => closePopup(popupImage));
+popupImagePicture.addEventListener('click', (evt) => evt.stopPropagation());
 //add popup
 popupAddForm.addEventListener('submit', handleSubmitAddPopup);
 buttonForCloseAdd.addEventListener('click', () => closePopup(popupAdd));
 document.querySelector('.profile__add-btn').addEventListener('click', () => openPopup(popupAdd));
+popupAdd.addEventListener('click', () => closePopup(popupAdd));
 //edit popup
 popupEditForm.addEventListener('submit', handleSubmitEditPopup);
 buttonForCloseEdit.addEventListener('click', () => closePopup(popupEdit));
 document.querySelector('.profile__edit-btn').addEventListener('click', handleEditButton);
+popupEdit.addEventListener('click', () => closePopup(popupEdit));
+//esc for exit all popups
+document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+        if (popupEdit.classList.contains('popup_opened')) closePopup(popupEdit)
+        else if (popupAdd.classList.contains('popup_opened')) closePopup(popupAdd)
+        else if (popupImage.classList.contains('popup_opened')) closePopup(popupImage)
+    }
+});
+//popups window stop propagation
+document.querySelectorAll('.popup-edit-window').forEach((el) => {
+    el.addEventListener('click', (evt) => evt.stopPropagation());
+})
+
+//VALIDATION
+
+const configValidation = {
+    formSelector: '.profile-edit-form',
+    inputFieldSelector: '.profile-edit-form__input',
+    buttonSubmitSelector: '.profile-edit-form__submit-btn',
+    inputErrorClass: 'profile-edit-form__input_invalid',
+}
+
+function showError(formElement, inputElement, errorMessage, config) {
+    const errorField = formElement.querySelector('#error-' + inputElement.id);
+    errorField.textContent = errorMessage;
+    inputElement.classList.add(config.inputErrorClass)
+}
+
+function hideError(formElement, inputElement, config) {
+    const errorField = formElement.querySelector('#error-' + inputElement.id);
+    errorField.textContent = '';
+    inputElement.classList.remove(config.inputErrorClass)
+}
+
+function checkValid(formElement, inputElement, config) {
+    if (inputElement.validity.valid) {
+        hideError(formElement, inputElement, config);
+    } else {
+        showError(formElement, inputElement, inputElement.validationMessage, config);
+    }
+}
+
+function toggleButton(formElement, buttonSubmitForm) {
+    if (formElement.checkValidity()) {
+        buttonSubmitForm.disabled = false;
+    } else {
+        buttonSubmitForm.disabled = true;
+    }
+}
+
+function setEventListener(formElement, config) {
+    const inputList = formElement.querySelectorAll(config.inputFieldSelector);
+    const buttonSubmitForm = formElement.querySelector(config.buttonSubmitSelector);
+
+    toggleButton(formElement, buttonSubmitForm);
+    inputList.forEach((inputElement) => {
+        inputElement.addEventListener('input', () => {
+            checkValid(formElement, inputElement, config);
+            toggleButton(formElement, buttonSubmitForm);
+        });
+    });
+}
+
+function enableValidation(config) {
+    const formsList = document.querySelectorAll(config.formSelector);
+    formsList.forEach((formElement) => {
+        setEventListener(formElement, config);
+    });
+}
+
+enableValidation(configValidation);
