@@ -1,4 +1,4 @@
-import '../pages/index.css'; // добавьте импорт главного файла стилей 
+import './index.css';
 
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
