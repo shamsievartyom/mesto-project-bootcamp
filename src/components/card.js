@@ -1,4 +1,5 @@
-import { cardTemplate, popupImage, popupImagePicture, popupImageTitle } from './utils'
+import { cardTemplate, popupImage, popupImagePicture, popupImageTitle,} from './utils'
+import { openPopup } from './modal'
 
 function createCard(obj) {
     const card = cardTemplate.content.cloneNode('.places-grid__card');

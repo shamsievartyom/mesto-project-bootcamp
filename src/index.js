@@ -1,5 +1,5 @@
 import './index.css';
-import { popupEdit, buttonForCloseEdit, popupEditForm, popupAdd, placesGrid, popupAddForm, buttonForCloseAdd, popupImage, popupImagePicture, buttonForCloseImage } from './components/utils';
+import { popupEdit, buttonForCloseEdit, popupEditForm, popupAdd, placesGrid, popupAddForm, buttonForCloseAdd, popupImage, buttonForCloseImage, popupEditNameInput, profileName, popupEditDescriptionInput, profileDescription } from './components/utils';
 import * as validation from './components/validate';
 import { openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup } from './components/modal'
 import { createCard } from './components/card';
@@ -8,65 +8,56 @@ const initialCards = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-        alt: 'Зелёные горы',
     },
     {
         name: 'Челябинская область',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-        alt: 'Озеро среди снега',
     },
     {
         name: 'Иваново',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-        alt: 'Серые 9-ти этажки',
     },
     {
         name: 'Камчатка',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-        alt: 'Мелкая растительность возле гор',
     },
     {
         name: 'Холмогорский район',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-        alt: 'Железная дорога в лесу',
     },
     {
         name: 'Байкал',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-        alt: 'Скала возле водоёма',
     }
 ];
 
-
-
-
+function fillPopupInputs() {
+    popupEditNameInput.value = profileName.textContent;
+    popupEditDescriptionInput.value = profileDescription.textContent;
+}
 
 initialCards.reverse().forEach(obj => placesGrid.prepend(createCard(obj)));//default cards
 
+//image popup
 buttonForCloseImage.addEventListener('click', () => closePopup(popupImage));
-popupImage.addEventListener('click', () => closePopup(popupImage));
-popupImagePicture.addEventListener('click', (evt) => evt.stopPropagation());
+
 //add popup
 popupAddForm.addEventListener('submit', handleSubmitAddPopup);
 buttonForCloseAdd.addEventListener('click', () => closePopup(popupAdd));
 document.querySelector('.profile__add-btn').addEventListener('click', () => openPopup(popupAdd));
-popupAdd.addEventListener('click', () => closePopup(popupAdd));
+
 //edit popup
 popupEditForm.addEventListener('submit', handleSubmitEditPopup);
 buttonForCloseEdit.addEventListener('click', () => closePopup(popupEdit));
 document.querySelector('.profile__edit-btn').addEventListener('click', handleEditButton);
-popupEdit.addEventListener('click', () => closePopup(popupEdit));
-//esc for exit all popups
-document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-        if (popupEdit.classList.contains('popup_opened')) closePopup(popupEdit)
-        else if (popupAdd.classList.contains('popup_opened')) closePopup(popupAdd)
-        else if (popupImage.classList.contains('popup_opened')) closePopup(popupImage)
-    }
-});
-//popups window stop propagation
-document.querySelectorAll('.popup-edit-window').forEach((el) => {
-    el.addEventListener('click', (evt) => evt.stopPropagation());
+
+//click outside popup window for close
+[popupAdd, popupEdit, popupImage].forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup')) {
+            closePopup(popup)
+        }
+    })
 })
 
 const configValidation = {
@@ -77,3 +68,5 @@ const configValidation = {
 }
 
 validation.enableValidation(configValidation);
+
+export { fillPopupInputs }
