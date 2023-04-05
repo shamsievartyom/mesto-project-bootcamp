@@ -3,7 +3,7 @@
     flex-direction: column;
     padding: 0px;
     border: none;
-    margin: 48px 0 20px;
+    margin: 48px 0 8px;
 }
 
 @media (max-width: 620px) {

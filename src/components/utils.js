@@ -28,4 +28,8 @@ const popupImagePicture = popupImage.querySelector('.popup-image__picture');
 const popupImageTitle = popupImage.querySelector('.popup-image__title');
 const buttonForCloseImage = popupImage.querySelector('.profile-edit-form__close-icon');
 
-export { popupEditAvatarSubmit, popupEditAvatarInput, popupEditAvatarForm, buttonForCloseEditAvatar, popupEditAvatar, profileAvatar, profileName, profileDescription, popupEdit, buttonForCloseEdit, popupEditNameInput, popupEditDescriptionInput, popupEditSubmit, popupEditForm, popupAdd, placesGrid, cardTemplate, popupAddForm, popupAddNameInput, popupAddDescriptionInput, buttonForCloseAdd, popupImage, popupImagePicture, popupImageTitle, buttonForCloseImage, popupAddSubmit }
+const popupDeleteCard = document.querySelector('.popup_type_confirm-delete');
+const buttonForCloseDeleteCard = popupDeleteCard.querySelector('.profile-edit-form__close-icon');
+const buttonSubmitDeleteCard = popupDeleteCard.querySelector('.profile-edit-form__submit-btn');
+
+export { buttonSubmitDeleteCard, buttonForCloseDeleteCard, popupDeleteCard, popupEditAvatarSubmit, popupEditAvatarInput, popupEditAvatarForm, buttonForCloseEditAvatar, popupEditAvatar, profileAvatar, profileName, profileDescription, popupEdit, buttonForCloseEdit, popupEditNameInput, popupEditDescriptionInput, popupEditSubmit, popupEditForm, popupAdd, placesGrid, cardTemplate, popupAddForm, popupAddNameInput, popupAddDescriptionInput, buttonForCloseAdd, popupImage, popupImagePicture, popupImageTitle, buttonForCloseImage, popupAddSubmit }

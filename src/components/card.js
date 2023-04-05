@@ -1,6 +1,6 @@
-import { cardTemplate, popupImage, popupImagePicture, popupImageTitle, } from './utils';
+import { cardTemplate, popupImage, popupImagePicture, popupImageTitle, popupDeleteCard } from './utils';
 import { openPopup } from './modal';
-import { deleteCard, addLike, deleteLike } from './api';
+import { addLike, deleteLike } from './api';
 import { errorShow } from './error';
 import { myId } from '../index';
 
@@ -12,9 +12,6 @@ function createCard(obj) {
     const cardLikeCounter = card.querySelector('.place__like-counter');
 
     function isContainMyLike(likes) {
-        // return likes.some(el => {
-        //     return el._id === myId;
-        // })
         return likes.includes(myId);
     }
 
@@ -52,9 +49,10 @@ function createCard(obj) {
     }
     else {
         cardDeleteButton.addEventListener('click', (event) => {//add listener 4 delete
-            deleteCard(obj._id)
-                .then(event.target.closest('.places-grid__card').remove())
-                .catch((err) => { errorShow(err.message) })
+            openPopup(popupDeleteCard);
+            popupDeleteCard.deleteInfo = {};//add info about card inside popupDeleteCard
+            popupDeleteCard.deleteInfo.id = obj._id;
+            popupDeleteCard.deleteInfo.node = event.target.closest('.places-grid__card');
         })
     }
     card.querySelector('.place__image-btn').addEventListener('click', () => {//add listener 4 image

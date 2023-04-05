@@ -1,8 +1,8 @@
 import * as validation from './validate';
-import { popupEditAvatarSubmit, popupEditAvatarForm, popupEditAvatarInput, profileName, profileDescription, popupEdit, popupEditNameInput, popupEditDescriptionInput, popupAdd, placesGrid, popupAddForm, popupAddNameInput, popupAddDescriptionInput, popupEditForm, popupEditSubmit, popupAddSubmit, popupImage, popupEditAvatar } from './utils'
+import { popupEditAvatarSubmit, popupEditAvatarForm, popupEditAvatarInput, popupEdit, popupEditNameInput, popupEditDescriptionInput, popupAdd, placesGrid, popupAddForm, popupAddNameInput, popupAddDescriptionInput, popupEditForm, popupEditSubmit, popupAddSubmit, popupImage, popupEditAvatar, popupDeleteCard } from './utils'
 import { createCard } from './card';
 import { fillPopupInputs, fillUserInfo } from '../index';
-import { changeUserInfo, addCard, changeUserAvatar } from './api';
+import { changeUserInfo, addCard, changeUserAvatar, deleteCard } from './api';
 import { errorShow } from './error';
 
 function openPopup(popup) {
@@ -85,13 +85,23 @@ function handleSubmitEditAvatarPopup(event) {
         .finally(() => { popupEditAvatarSubmit.value = 'Сохранить' })
 }
 
+function handleSubmitDeleteCard() {
+    deleteCard(popupDeleteCard.deleteInfo.id)
+        .then(() => {
+            popupDeleteCard.deleteInfo.node.remove();
+            closePopup(popupDeleteCard);
+        })
+        .catch((err) => { errorShow(err.message) })
+}
+
 function closeByEsc(evt) {
     if (evt.key === 'Escape') {
         if (popupEdit.classList.contains('popup_opened')) closePopup(popupEdit)
         else if (popupAdd.classList.contains('popup_opened')) closePopup(popupAdd)
         else if (popupImage.classList.contains('popup_opened')) closePopup(popupImage)
         else if (popupEditAvatar.classList.contains('popup_opened')) closePopup(popupEditAvatar)
+        else if (popupDeleteCard.classList.contains('popup_opened')) closePopup(popupDeleteCard)
     }
 }
 
-export { openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup, handleSubmitEditAvatarPopup };
+export { openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup, handleSubmitEditAvatarPopup, handleSubmitDeleteCard };
