@@ -6,17 +6,23 @@ import { createCard } from './components/card';
 import { getUser, getInitialCards } from './components/api'
 import { errorShow } from './components/error';
 
+let myId;
+
 Promise.all([
-    getUser()
-        .then((user) => { fillUserInfo(user) }),
+    getUser(),
     getInitialCards()
-        .then((cards) => { cards.reverse().forEach(obj => placesGrid.prepend(createCard(obj))) })
-]).catch((err) => { errorShow(err.message) })
+])
+    .then(([user, cards]) => {
+        fillUserInfo(user);
+        myId = user._id;
+        cards.reverse().forEach(obj => placesGrid.prepend(createCard(obj)));
+    })
+    .catch((err) => { errorShow(err.message) })
 
 function fillUserInfo(user) {
     if (user.name) profileName.textContent = user.name;
     if (user.about) profileDescription.textContent = user.about;
-    if (user.avatar) profileAvatar.src = `${user.avatar}`;
+    if (user.avatar) profileAvatar.src = user.avatar;
 }
 
 function fillPopupInputs() {
@@ -60,4 +66,4 @@ const configValidation = {
 
 validation.enableValidation(configValidation);
 
-export { fillPopupInputs, fillUserInfo }
+export { fillPopupInputs, fillUserInfo, myId }

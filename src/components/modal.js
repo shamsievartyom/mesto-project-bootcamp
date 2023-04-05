@@ -27,13 +27,12 @@ function handleSubmitEditPopup(event) {
     changeUserInfo(user)
         .then((user) => {
             fillUserInfo(user);
-            popupEditSubmit.value = 'Сохранить';
             closePopup(popupEdit)
         })
         .catch((err) => {
-            popupEditSubmit.value = 'Сохранить';
             errorShow(err.message)
         })
+        .finally(() => { popupEditSubmit.value = 'Сохранить' })
 }
 
 function handleEditButton() {
@@ -61,15 +60,14 @@ function handleSubmitAddPopup(event) {
     addCard(placeCard)
         .then((card) => {
             placesGrid.prepend(createCard(card));
-            popupAddSubmit.value = 'Создать';
             popupAddForm.reset();
             validation.toggleButton(popupAddForm, popupAddSubmit);
             closePopup(popupAdd);
         })
         .catch(err => {
             errorShow(err.message)
-            popupAddSubmit.value = 'Создать';
         })
+        .finally(() => { popupAddSubmit.value = 'Создать' })
 }
 
 function handleSubmitEditAvatarPopup(event) {
@@ -79,15 +77,12 @@ function handleSubmitEditAvatarPopup(event) {
 
     changeUserAvatar({ avatar: popupEditAvatarInput.value })
         .then((user) => {
-            fillUserInfo(user)
-            popupEditAvatarSubmit.value = 'Сохранить';
+            fillUserInfo(user);
             popupEditAvatarForm.reset();
             closePopup(popupEditAvatar);
         })
-        .catch(err => {
-            errorShow(err.message)
-            popupEditAvatarSubmit.value = 'Сохранить';
-        })
+        .catch(err => { errorShow(err.message); })
+        .finally(() => { popupEditAvatarSubmit.value = 'Сохранить' })
 }
 
 function closeByEsc(evt) {

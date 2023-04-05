@@ -2,7 +2,7 @@ import { cardTemplate, popupImage, popupImagePicture, popupImageTitle, } from '.
 import { openPopup } from './modal';
 import { deleteCard, addLike, deleteLike } from './api';
 import { errorShow } from './error';
-const myId = '5e0293eca320251cc7a22ed7';
+import { myId } from '../index';
 
 function createCard(obj) {
     const card = cardTemplate.content.cloneNode('.places-grid__card');
