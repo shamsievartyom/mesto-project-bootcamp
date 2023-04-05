@@ -35,7 +35,8 @@
 .profile-edit-form{display:flex;flex-direction:column}
 .profile-edit-form__close-icon{background-color:unset;background-image:url(2ceb783afbab75916ddc.svg);border:none;cursor:pointer;height:32px;padding:0;position:absolute;right:-40px;top:-40px;width:32px}@media (max-width:620px){.profile-edit-form__close-icon{background-size:20px;height:20px;right:0;top:-36px;width:20px}}.profile-edit-form__close-icon:hover{opacity:.6}
 .profile-edit-form__title{font-size:24px;font-weight:900;line-height:29px;margin:0}@media (max-width:620px){.profile-edit-form__title{font-size:18px;line-height:22px}}
-.profile-edit-form__fieldset{border:none;display:flex;flex-direction:column;margin:48px 0 20px;padding:0}@media (max-width:620px){.profile-edit-form__fieldset{margin:75px 0 17px}}
+.profile-edit-form__title_close-popup{margin-bottom:30px}
+.profile-edit-form__fieldset{border:none;display:flex;flex-direction:column;margin:48px 0 8px;padding:0}@media (max-width:620px){.profile-edit-form__fieldset{margin:75px 0 17px}}
 .profile-edit-form__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;font-size:14px;font-weight:400;height:27px;line-height:17px;padding:0 0 10px}
 .profile-edit-form__input_invalid{border-color:red}
 .profile-edit-form__error{color:red;display:block;font-size:12px;font-weight:400;line-height:15px;margin:5px 0;min-height:30px}
