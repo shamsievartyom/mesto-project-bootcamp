@@ -1,0 +1,12 @@
+.error-shower {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s linear, visibility 0s 0.5s;
+    background-color: white;
+}

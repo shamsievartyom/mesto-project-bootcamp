@@ -1,42 +1,28 @@
 import './index.css';
-import { popupEdit, buttonForCloseEdit, popupEditForm, popupAdd, placesGrid, popupAddForm, buttonForCloseAdd, popupImage, buttonForCloseImage, popupEditNameInput, profileName, popupEditDescriptionInput, profileDescription } from './components/utils';
+import { popupEditAvatarForm, buttonForCloseEditAvatar, popupEditAvatar, profileAvatar, popupEdit, buttonForCloseEdit, popupEditForm, popupAdd, placesGrid, popupAddForm, buttonForCloseAdd, popupImage, buttonForCloseImage, popupEditNameInput, profileName, popupEditDescriptionInput, profileDescription } from './components/utils';
 import * as validation from './components/validate';
-import { openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup } from './components/modal'
+import { openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup, handleSubmitEditAvatarPopup } from './components/modal'
 import { createCard } from './components/card';
+import { getUser, getInitialCards } from './components/api'
+import { errorShow } from './components/error';
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    }
-];
+Promise.all([
+    getUser()
+        .then((user) => { fillUserInfo(user) }),
+    getInitialCards()
+        .then((cards) => { cards.reverse().forEach(obj => placesGrid.prepend(createCard(obj))) })
+]).catch((err) => { errorShow(err.message) })
+
+function fillUserInfo(user) {
+    if (user.name) profileName.textContent = user.name;
+    if (user.about) profileDescription.textContent = user.about;
+    if (user.avatar) profileAvatar.src = `${user.avatar}`;
+}
 
 function fillPopupInputs() {
     popupEditNameInput.value = profileName.textContent;
     popupEditDescriptionInput.value = profileDescription.textContent;
 }
-
-initialCards.reverse().forEach(obj => placesGrid.prepend(createCard(obj)));//default cards
 
 //image popup
 buttonForCloseImage.addEventListener('click', () => closePopup(popupImage));
@@ -51,8 +37,13 @@ popupEditForm.addEventListener('submit', handleSubmitEditPopup);
 buttonForCloseEdit.addEventListener('click', () => closePopup(popupEdit));
 document.querySelector('.profile__edit-btn').addEventListener('click', handleEditButton);
 
+//editAvatar popup
+popupEditAvatarForm.addEventListener('submit', handleSubmitEditAvatarPopup);
+buttonForCloseEditAvatar.addEventListener('click', () => closePopup(popupEditAvatar));
+document.querySelector('.profile__avatar-btn').addEventListener('click', () => openPopup(popupEditAvatar));
+
 //click outside popup window for close
-[popupAdd, popupEdit, popupImage].forEach((popup) => {
+[popupAdd, popupEdit, popupImage, popupEditAvatar].forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup')) {
             closePopup(popup)
@@ -69,4 +60,4 @@ const configValidation = {
 
 validation.enableValidation(configValidation);
 
-export { fillPopupInputs }
+export { fillPopupInputs, fillUserInfo }

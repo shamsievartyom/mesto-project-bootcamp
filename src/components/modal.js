@@ -1,7 +1,9 @@
 import * as validation from './validate';
-import { profileName, profileDescription, popupEdit, popupEditNameInput, popupEditDescriptionInput, popupAdd, placesGrid, popupAddForm, popupAddNameInput, popupAddDescriptionInput, popupEditForm, popupEditSubmit, popupAddSubmit, popupImage } from './utils'
+import { popupEditAvatarSubmit, popupEditAvatarForm, popupEditAvatarInput, profileName, profileDescription, popupEdit, popupEditNameInput, popupEditDescriptionInput, popupAdd, placesGrid, popupAddForm, popupAddNameInput, popupAddDescriptionInput, popupEditForm, popupEditSubmit, popupAddSubmit, popupImage, popupEditAvatar } from './utils'
 import { createCard } from './card';
-import { fillPopupInputs } from '../index';
+import { fillPopupInputs, fillUserInfo } from '../index';
+import { changeUserInfo, addCard, changeUserAvatar } from './api';
+import { errorShow } from './error';
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -16,9 +18,22 @@ function closePopup(popup) {
 function handleSubmitEditPopup(event) {
     event.preventDefault();
 
-    profileName.textContent = popupEditNameInput.value
-    profileDescription.textContent = popupEditDescriptionInput.value;
-    closePopup(popupEdit)
+    popupEditSubmit.value = 'Сохранение...';
+
+    const user = {
+        name: popupEditNameInput.value,
+        about: popupEditDescriptionInput.value,
+    }
+    changeUserInfo(user)
+        .then((user) => {
+            fillUserInfo(user);
+            popupEditSubmit.value = 'Сохранить';
+            closePopup(popupEdit)
+        })
+        .catch((err) => {
+            popupEditSubmit.value = 'Сохранить';
+            errorShow(err.message)
+        })
 }
 
 function handleEditButton() {
@@ -37,14 +52,42 @@ function handleEditButton() {
 function handleSubmitAddPopup(event) {
     event.preventDefault();
 
+    popupAddSubmit.value = 'Сохранение...';
+
     const placeCard = {
         name: popupAddNameInput.value,
         link: popupAddDescriptionInput.value,
     }
-    placesGrid.prepend(createCard(placeCard));
-    popupAddForm.reset();
-    validation.toggleButton(popupAddForm, popupAddSubmit);
-    closePopup(popupAdd);
+    addCard(placeCard)
+        .then((card) => {
+            placesGrid.prepend(createCard(card));
+            popupAddSubmit.value = 'Создать';
+            popupAddForm.reset();
+            validation.toggleButton(popupAddForm, popupAddSubmit);
+            closePopup(popupAdd);
+        })
+        .catch(err => {
+            errorShow(err.message)
+            popupAddSubmit.value = 'Создать';
+        })
+}
+
+function handleSubmitEditAvatarPopup(event) {
+    event.preventDefault();
+
+    popupEditAvatarSubmit.value = 'Сохранение...';
+
+    changeUserAvatar({ avatar: popupEditAvatarInput.value })
+        .then((user) => {
+            fillUserInfo(user)
+            popupEditAvatarSubmit.value = 'Сохранить';
+            popupEditAvatarForm.reset();
+            closePopup(popupEditAvatar);
+        })
+        .catch(err => {
+            errorShow(err.message)
+            popupEditAvatarSubmit.value = 'Сохранить';
+        })
 }
 
 function closeByEsc(evt) {
@@ -52,7 +95,8 @@ function closeByEsc(evt) {
         if (popupEdit.classList.contains('popup_opened')) closePopup(popupEdit)
         else if (popupAdd.classList.contains('popup_opened')) closePopup(popupAdd)
         else if (popupImage.classList.contains('popup_opened')) closePopup(popupImage)
+        else if (popupEditAvatar.classList.contains('popup_opened')) closePopup(popupEditAvatar)
     }
 }
 
-export { openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup };
+export { openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup, handleSubmitEditAvatarPopup };

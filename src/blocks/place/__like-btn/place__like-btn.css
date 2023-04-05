@@ -1,10 +1,8 @@
 .place__like-btn {
     padding: 0px;
-    max-width: 22px;
-    width: 100%;
+    width: 22px;
     height: 19px;
     border: none;
-    margin-left: auto;
     background-image: url(./../../../images/icon_like-btn.svg);
     background-size: 22px;
     background-repeat: no-repeat;
