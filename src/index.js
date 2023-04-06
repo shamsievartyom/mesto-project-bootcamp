@@ -1,7 +1,7 @@
 import './index.css';
 import { buttonSubmitDeleteCard, buttonForCloseDeleteCard, popupDeleteCard, popupEditAvatarForm, buttonForCloseEditAvatar, popupEditAvatar, profileAvatar, popupEdit, buttonForCloseEdit, popupEditForm, popupAdd, placesGrid, popupAddForm, buttonForCloseAdd, popupImage, buttonForCloseImage, popupEditNameInput, profileName, popupEditDescriptionInput, profileDescription } from './components/utils';
 import * as validation from './components/validate';
-import { openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup, handleSubmitEditAvatarPopup, handleSubmitDeleteCard } from './components/modal'
+import { openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup, handleSubmitEditAvatarPopup, handleSubmitDeleteCard, handleEditAvatarButton } from './components/modal'
 import { createCard } from './components/card';
 import { getUser, getInitialCards } from './components/api'
 import { errorShow } from './components/error';
@@ -46,7 +46,7 @@ document.querySelector('.profile__edit-btn').addEventListener('click', handleEdi
 //editAvatar popup
 popupEditAvatarForm.addEventListener('submit', handleSubmitEditAvatarPopup);
 buttonForCloseEditAvatar.addEventListener('click', () => closePopup(popupEditAvatar));
-document.querySelector('.profile__avatar-btn').addEventListener('click', () => openPopup(popupEditAvatar));
+document.querySelector('.profile__avatar-btn').addEventListener('click', handleEditAvatarButton);
 
 //deleteCard popup
 buttonForCloseDeleteCard.addEventListener('click', () => closePopup(popupDeleteCard));

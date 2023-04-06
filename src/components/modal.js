@@ -5,6 +5,8 @@ import { fillPopupInputs, fillUserInfo } from '../index';
 import { changeUserInfo, addCard, changeUserAvatar, deleteCard } from './api';
 import { errorShow } from './error';
 
+const EditFormInputList = popupEditForm.querySelectorAll('.profile-edit-form__input');
+
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEsc)
@@ -39,13 +41,17 @@ function handleEditButton() {
     fillPopupInputs();
 
     //validation before open 
-    const inputList = popupEditForm.querySelectorAll('.profile-edit-form__input');
-    inputList.forEach((inputElement) => {
+    EditFormInputList.forEach((inputElement) => {
         validation.hideError(popupEditForm, inputElement, { inputErrorClass: 'profile-edit-form__input_invalid' });
     });
     validation.toggleButton(popupEditForm, popupEditSubmit);
 
     openPopup(popupEdit);
+}
+
+function handleEditAvatarButton() {
+    validation.toggleButton(popupEditAvatarForm, popupEditAvatarSubmit);
+    openPopup(popupEditAvatar);
 }
 
 function handleSubmitAddPopup(event) {
@@ -104,4 +110,4 @@ function closeByEsc(evt) {
     }
 }
 
-export { openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup, handleSubmitEditAvatarPopup, handleSubmitDeleteCard };
+export { handleEditAvatarButton, openPopup, closePopup, handleSubmitEditPopup, handleEditButton, handleSubmitAddPopup, handleSubmitEditAvatarPopup, handleSubmitDeleteCard };
