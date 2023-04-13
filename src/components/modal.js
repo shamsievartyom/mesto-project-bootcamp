@@ -102,11 +102,7 @@ function handleSubmitDeleteCard() {
 
 function closeByEsc(evt) {
     if (evt.key === 'Escape') {
-        if (popupEdit.classList.contains('popup_opened')) closePopup(popupEdit)
-        else if (popupAdd.classList.contains('popup_opened')) closePopup(popupAdd)
-        else if (popupImage.classList.contains('popup_opened')) closePopup(popupImage)
-        else if (popupEditAvatar.classList.contains('popup_opened')) closePopup(popupEditAvatar)
-        else if (popupDeleteCard.classList.contains('popup_opened')) closePopup(popupDeleteCard)
+        closePopup(document.querySelector('.popup_opened'));
     }
 }
 
